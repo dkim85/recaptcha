@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Recaptcha</title>
+</head>
+<style type="text/css">
+	.msg-error {
+	  color: #c65848;
+	}
+	.g-recaptcha.error {
+	  border: solid 2px #c64848;
+	  padding: .2em;
+	  width: 19em;
+	}
+</style>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+<body>
+
+<!-- start recaptcha section by danilo -->
+
+
+<span class="msg-error error"></span>
+<div id="recaptcha" class="g-recaptcha" data-sitekey="6Ld4Jh8TAAAAAD2tURa21kTFwMkKoyJCqaXb0uoK"></div>
+
+<button class="btn" id="btn-validate">Validate reCAPTCHA</button>
+
+    <!-- <span class="msg-error error"></span>
+    <div class="g-recaptcha" data-sitekey="6LeOfDoUAAAAAH8HAuU7pTXHPQQfC7W5aEhsaH5l"></div>
+    <button class="btn" id="btn-validate">Validate reCAPTCHA</button> -->
+
+ <!-- end recaptcha section by danilo -->
+
+
+<script type="text/javascript">
+	
+$( '#btn-validate' ).click(function(){
+  var $captcha = $( '#recaptcha' ),
+      response = grecaptcha.getResponse();
+  
+  if (response.length === 0) {
+    $( '.msg-error').text( "reCAPTCHA is mandatory" );
+    if( !$captcha.hasClass( "error" ) ){
+      $captcha.addClass( "error" );
+    }
+  } else {
+    $( '.msg-error' ).text('');
+    $captcha.removeClass( "error" );
+    alert( 'reCAPTCHA marked' );
+  }
+})	
+</script>
+
+</body>
+</html>
